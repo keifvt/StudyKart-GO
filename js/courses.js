@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const weightTotalSpan = weightTotalDisplay.querySelector("span");
 
     const courseNameInput = document.getElementById("course-name");
-    const courseInstructorInput = document.getElementById("course-instructor");
+    const courseInstructorInput = document.getElementById("modal-course-instructor");
     const courseColorInput = document.getElementById("course-color");
 
 
@@ -315,4 +315,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     init(); 
+
 });
