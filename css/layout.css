@@ -202,7 +202,7 @@
     }
 }
 
-@media (max-width: 992.999999999px) and (min-width: 768px) {
+@media (max-width: 992.999999999px) and (min-width: 481px) {
     .app-container {
         display: flex;
         flex-direction: column;
@@ -273,7 +273,7 @@
     }
 }
 
-@media (max-width: 767.999999px)  {
+@media (max-width: 480.999999px)  {
     .app-container {
         display: flex;
         flex-direction: column;
@@ -365,3 +365,4 @@
         padding-bottom: 70px;
     }
 }
+
