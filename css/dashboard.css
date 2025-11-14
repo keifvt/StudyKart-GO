@@ -443,7 +443,7 @@
     margin-bottom: 8px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 480px) {
     .dashboard-grid {
         grid-template-columns: 1fr; 
     }
@@ -465,6 +465,7 @@
     color: #1f1f1f;  
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
 }
+
 
 
 
