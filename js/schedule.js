@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const timeLabelsCol = document.getElementById("time-labels-col");
     const legendContainer = document.getElementById("schedule-legend");
-    const scheduleGrid = document.querySelector(".schedule-grid"); // Get the grid container
+    const scheduleGrid = document.querySelector(".schedule-grid"); 
     let coursesData = [];
 
     let earliestHour = 7; 
@@ -67,10 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const block = document.createElement("div");
         block.className = "course-block";
         
-        // --- ADD THESE ---
-        block.dataset.courseId = course.id; // Add course ID
-        block.style.cursor = "pointer"; // Show it's clickable
-        // --- END OF ADD ---
+
+        block.dataset.courseId = course.id; 
+        block.style.cursor = "pointer"; 
+
         
         block.style.top = `${top}px`;
         block.style.height = `${height}px`;
@@ -147,9 +147,70 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function exportScheduleToPDF() {
+    const { jsPDF } = window.jspdf;
+    const exportBtn = document.getElementById("export-pdf-btn");
+    const scheduleGrid = document.querySelector(".schedule-grid");
+    const legendContainer = document.getElementById("schedule-legend");
+    const pageHeader = document.querySelector(".page-header");
+
+    if (!scheduleGrid || !legendContainer || !pageHeader) {
+        console.error("Missing elements to export!");
+        return;
+    }
+
+    console.log("Generating PDF...");
+    exportBtn.textContent = "Generating...";
+    exportBtn.disabled = true;
+
+    Promise.all([
+        html2canvas(pageHeader),
+        html2canvas(legendContainer),
+        html2canvas(scheduleGrid, { scale: 2 })
+    ]).then(([headerCanvas, legendCanvas, gridCanvas]) => {
+        
+        const pdf = new jsPDF({
+            orientation: 'landscape',
+            unit: 'px',
+        });
+
+        const pagePadding = 20;
+        const pdfWidth = pdf.internal.pageSize.getWidth() - (pagePadding * 2);
+        
+        let pdf_y_position = pagePadding;
+        const headerHeight = (headerCanvas.height * pdfWidth) / headerCanvas.width;
+        pdf.addImage(headerCanvas.toDataURL('image/png'), 'PNG', pagePadding, pdf_y_position, pdfWidth, headerHeight);
+        pdf_y_position += headerHeight + 10;
+
+        const legendHeight = (legendCanvas.height * pdfWidth) / legendCanvas.width;
+        pdf.addImage(legendCanvas.toDataURL('image/png'), 'PNG', pagePadding, pdf_y_position, pdfWidth, legendHeight);
+        pdf_y_position += legendHeight + 10;
+        
+        const gridHeight = (gridCanvas.height * pdfWidth) / gridCanvas.width;
+        pdf.addImage(gridCanvas.toDataURL('image/png'), 'PNG', pagePadding, pdf_y_position, pdfWidth, gridHeight);
+        
+        pdf.save("StudyKart-Schedule.pdf");
+
+        console.log("PDF generated!");
+        exportBtn.textContent = "Export PDF";
+        exportBtn.disabled = false;
+
+    }).catch(err => {
+        console.error("Error generating PDF:", err);
+        alert("Sorry, an error occurred while generating the PDF.");
+        exportBtn.textContent = "Export PDF";
+        exportBtn.disabled = false;
+    });
+}
+
     function init() {
         loadData();
         renderSchedule();
+
+        const exportBtn = document.getElementById("export-pdf-btn");
+        if (exportBtn) {
+            exportBtn.addEventListener("click", exportScheduleToPDF);
+        }
         
         if (scheduleGrid) {
             scheduleGrid.addEventListener("click", (e) => {
