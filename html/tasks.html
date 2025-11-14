@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/tasks.css">
+    <script src="https://kit.fontawesome.com/0be5f36c73.js" crossorigin="anonymous"></script>
+    <title>Tasks - StudyKart GO!</title>
+    </head>
+<body>
+
+    <div id="add-task-modal" class="modal-overlay">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            
+            <div class="modal-header">
+                <h2 id="modal-title">Create New Task</h2>
+                <button class="btn-close-modal" aria-label="Close modal">&times;</button>
+            </div>
+
+           <form id="new-task-form" class="modal-form">
+                
+                <input type="hidden" id="task-id">
+
+                <div class="form-group">
+                    <label for="task-name">Task Name</label>
+                    <input type="text" id="task-name" placeholder="e.g., Finish lab report" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="task-course">Course / Subject</label>
+                    <select id="task-course" required>
+                        <option value="" disabled selected>Select a course</option>
+                        </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="task-due-date">Due Date</label>
+                    <input type="date" id="task-due-date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="task-priority">Priority</label>
+                    <select id="task-priority" required>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high" selected>High</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="app-container sidebar-collapsed">
+        
+        <nav class="sidebar-nav">
+
+            <div class="sidebar-logo">
+                <i><img src="/assets/logo.svg" alt="" class="sidebar-logo-img"></i>
+            </div>
+            <ul class="nav-list">
+                 <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a></li>
+                <li><a href="courses.html" class="nav-link"><i class="fa-solid fa-folder"></i><span> Courses</span></a></li>
+                <li><a href="tasks.html" class="nav-link ac"><i class="fa-solid fa-clipboard-check"></i> <span>Tasks</span></a></li>
+                <li><a href="pomodoro.html" class="nav-link"><i class="fa-solid fa-alarm-clock"></i> <span>Focus</span></a></li>
+                <li><a href="schedule.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i> <span>Schedule</span></a></li>
+                <li><a href="grades.html" class="nav-link"><i class="fa-solid fa-medal"></i> <span>Grades</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="main-content-area"> 
+            <header class="dashboard-header">
+                <div class="current-date" id="current-date-display">Tuesday, October 21, 2025</div>
+                <button class="profile-button"></button>
+            </header>
+
+            <main class="tasks-page-content">
+                
+                <section class="page-header">
+                    <h1 class="subsection">Tasks</h1>
+                    <p>Stay on top of your assignments and deadlines.</p>
+                </section>
+
+                <div class="tasks-controls">
+                    <button class="btn btn-primary" id="add-new-task-btn">
+                        + Add New Task
+                    </button>
+                    <div class="task-filters">
+                        <label for="filter-by">Filter by:</label>
+                        <select id="filter-by">
+                            <option value="all">All</option>
+                            <option value="course">Course</option>
+                            <option value="priority">Priority</option>
+                        </select>
+                        <label for="sort-by">Sort by:</label>
+                        <select id="sort-by">
+                            <option value="due-date">Due Date</option>
+                            <option value="priority">Priority</option>
+                            <option value="name">Name</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="tasks-board">
+                    
+                    <section class="task-column" id="column-todo">
+                        <h2>To Do (0)</h2>
+                        <div class="task-list">
+                            </div>
+                    </section>
+                    
+                    
+
+                    <section class="task-column" id="column-missed">
+                        <h2>Missed Deadline (0)</h2>
+                        <div class="task-list">
+                            </div>
+                    </section>
+
+                    <section class="task-column" id="column-completed">
+                        <h2>Completed (0)</h2>
+                        <div class="task-list">
+                            </div>
+                    </section>
+
+                </div> </main> </div> </div> </body>
+
+    <script src="../js/date.js"></script>
+    <script src="../js/tasks.js" type="module"></script>
+    <script src="../js/profile-header.js" type="module"></script> </html>
+
+</html>

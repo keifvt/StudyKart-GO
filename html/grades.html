@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/grades.css">
+    <script src="https://kit.fontawesome.com/0be5f36c73.js" crossorigin="anonymous"></script>
+    <title>Grades - StudyKart GO!</title>
+    </head>
+<body>
+
+    <div id="add-entry-modal" class="modal-overlay">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="entry-modal-title">
+            
+            <div class="modal-header">
+                <h2 id="entry-modal-title">Add New Entry</h2>
+                <button class="btn-close-modal" aria-label="Close modal">&times;</button>
+            </div>
+
+            <form id="add-entry-form" class="modal-form">
+                <input type="hidden" id="entry-component-name">
+
+                <div class="form-group">
+                    <label for="entry-activity-name">Activity Name</label>
+                    <input type="text" id="entry-activity-name" placeholder="e.g., Quiz 1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="entry-score">Score</label>
+                    <input type="number" id="entry-score" placeholder="18" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="entry-total">Total</label>
+                    <input type="number" id="entry-total" placeholder="20" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-entry-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="app-container sidebar-collapsed">
+        <nav class="sidebar-nav">
+            <div class="sidebar-logo">
+                <i><img src="/assets/logo.svg" alt="" class="sidebar-logo-img"></i>
+            </div>
+            <ul class="nav-list">
+                 <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a></li>
+                <li><a href="courses.html" class="nav-link"><i class="fa-solid fa-folder"></i><span> Courses</span></a></li>
+                <li><a href="tasks.html" class="nav-link"><i class="fa-solid fa-clipboard-check"></i> <span>Tasks</span></a></li>
+                <li><a href="pomodoro.html" class="nav-link"><i class="fa-solid fa-alarm-clock"></i> <span>Focus</span></a></li>
+                <li><a href="schedule.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i> <span>Schedule</span></a></li>
+                <li><a href="grades.html" class="nav-link active"><i class="fa-solid fa-medal"></i> <span>Grades</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="main-content-area">
+
+            <header class="dashboard-header">
+                <div class="current-date" id="current-date-display">Tuesday, October 21, 2025</div>
+                <button class="profile-button"></button>
+            </header>
+
+            <main class="grades-page-content">
+                
+                <section class="page-header">
+                    <h1 class="subsection">Grade Manager</h1>
+                    <p>Track your academic performance for each course.</p>
+                </section>
+
+                <nav class="course-tabs-container" id="course-tabs-container">
+                    </nav>
+
+                <div class="grade-details-container" id="grade-details-container">
+                    </div>
+
+            </main>
+        </div> </div> </body>
+
+        <script src="../js/date.js"></script>
+        <script src="../js/grades.js" type="module"></script>
+        <script src="../js/profile-header.js" type="module"></script> </html>
+        
+
+</html>

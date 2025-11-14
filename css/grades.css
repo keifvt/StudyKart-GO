@@ -1,0 +1,157 @@
+/* =========grades=============== */
+
+.grades-page-content {
+    padding: 0 16px 32px 16px;
+    overflow-y: auto;
+}
+
+.course-tabs-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 24px;
+}
+
+.course-tab {
+    border: none;
+    background: none;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    color: #6c757d;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.course-tab:hover {
+    color: #111;
+}
+
+.course-tab.active {
+    color: var(--active-course-color, #e83e8c);
+    border-bottom-color: var(--active-course-color, #e83e8c);
+}
+
+.grade-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.course-header-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.course-header-card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.course-header-card p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.component-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.component-header {
+    padding: 20px 24px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+.component-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.component-header span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6c757d;
+}
+
+.grade-table-container {
+    overflow-x: auto;
+}
+
+.grade-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.grade-table th,
+.grade-table td {
+    padding: 14px 24px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.grade-table th {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.grade-table td {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.grade-table th:not(:first-child),
+.grade-table td:not(:first-child) {
+    text-align: right;
+}
+
+.grade-table tr:last-child td {
+    border-bottom: none;
+}
+
+.component-footer {
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-add-entry {
+    background-color: #111;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.final-grade-card {
+    background-color: var(--card-bg, #fff); 
+    border: 2px solid var(--border-color, #eee); 
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+}
+.final-grade-card h2 {
+    font-size: 1.1rem; 
+    font-weight: 600;
+    color: var(--text-secondary, #6c757d);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+.final-grade-card .final-grade-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary, #111); 
+}

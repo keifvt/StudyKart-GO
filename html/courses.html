@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/courses.css">
+    <script src="https://kit.fontawesome.com/0be5f36c73.js" crossorigin="anonymous"></script>
+    <title>Courses - StudyKart GO!</title>
+    </head>
+<body>
+
+    <div id="course-modal" class="modal-overlay">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            
+            <div class="modal-header">
+                <h2 id="modal-title">New Course</h2>
+                <button class="btn-close-modal" aria-label="Close modal">&times;</button>
+            </div>
+
+            <form id="course-form" class="modal-form" novalidate>
+                <input type="hidden" id="course-id">
+
+                <div class="form-group">
+                    
+                    <label for="course-color">Color</label>
+                    <input type="color" id="course-color" name="color" value="#a5f3fc">
+                </div>
+
+                <div class="form-group">
+                    <label for="course-name">Course Name</label>
+                    <input type="text" id="course-name" placeholder="e.g., Web Development" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="modal-course-instructor">Instructor (Optional)</label>
+                    <input type="text" id="modal-course-instructor" placeholder="e.g., Prof. Larra Mae Balisi">
+                </div>
+                <h3 class="form-step-title">Schedule</h3>
+                <div id="schedule-builder-container">
+                    </div>
+                <button type="button" class="btn btn-secondary btn-add-field" id="add-schedule-btn">
+                    + Add Schedule
+                </button>
+
+                <h3 class="form-step-title">Grading Weights</h3>
+                <div id="grading-weights-container">
+                    </div>
+                <button type="button" class="btn btn-secondary btn-add-field" id="add-component-btn">
+                    + Add Component
+                </button>
+                <div class="weight-total-display" id="weight-total-display">
+                    Total: <span>0</span>%
+                </div>
+
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-course-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="form-submit-btn">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="app-container sidebar-collapsed">
+        
+        <nav class="sidebar-nav">
+            <div class="sidebar-logo">
+                <i><img src="/assets/logo.svg" alt="" class="sidebar-logo-img"></i>
+            </div>
+            <ul class="nav-list">
+               <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a></li>
+                <li><a href="courses.html" class="nav-link active"><i class="fa-solid fa-folder"></i><span>Courses</span></a></li>
+                <li><a href="tasks.html" class="nav-link"><i class="fa-solid fa-clipboard-check"></i> <span>Tasks</span></a></li>
+                <li><a href="pomodoro.html" class="nav-link"><i class="fa-solid fa-alarm-clock"></i> <span>Focus</span></a></li>
+                <li><a href="schedule.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i> <span>Schedule</span></a></li>
+                <li><a href="grades.html" class="nav-link"><i class="fa-solid fa-medal"></i> <span>Grades</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="main-content-area">
+
+            <header class="dashboard-header">
+                <div class="current-date" id="current-date-display">Tuesday, October 21, 2025</div>
+                <button class="profile-button"></button>
+            </header>
+
+            <main class="courses-page-content">
+                
+                <section class="page-header">
+                    <h1 class="subsection">Courses</h1>
+                    <p>Your central hub for all subjects and their details.</p>
+                </section>
+
+                <div class="courses-controls">
+                    <button class="btn btn-primary" id="add-new-course-btn">
+                        + Add New Course
+                    </button>
+                </div>
+
+                <div class="course-grid" id="course-grid">
+                    </div>
+
+            </main> 
+
+        </div> </div> </body>
+
+        <script src="../js/date.js"></script>
+        <script src="../js/courses.js" type="module"></script>
+        <script src="../js/profile-header.js" type="module"></script> </html>
+
+</html>

@@ -1,0 +1,30 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sedgwick+Ave+Display&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa; 
+    color: #1f1f1f;
+   min-height: 100dvh;
+    min-height: 100vh;
+    grid-template-columns: auto 1fr;
+}
+
+.subsection {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    /* text-align: center; */
+}
+
+.card .subsection {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    text-align: center;
+}
+

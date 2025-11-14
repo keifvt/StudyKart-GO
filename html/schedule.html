@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/schedule.css">
+    <script src="https://kit.fontawesome.com/0be5f36c73.js" crossorigin="anonymous"></script>
+    <title>Schedule - StudyKart GO!</title>
+    </head>
+<body>
+
+    <div class="app-container sidebar-collapsed">
+        
+        <nav class="sidebar-nav">
+
+            <div class="sidebar-logo">
+                <i><img src="/assets/logo.svg" alt="" class="sidebar-logo-img"></i>
+            </div>
+            <ul class="nav-list">
+                 <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a></li>
+                <li><a href="courses.html" class="nav-link"><i class="fa-solid fa-folder"></i><span> Courses</span></a></li>
+                <li><a href="tasks.html" class="nav-link"><i class="fa-solid fa-clipboard-check"></i> <span>Tasks</span></a></li>
+                <li><a href="pomodoro.html" class="nav-link"><i class="fa-solid fa-alarm-clock"></i> <span>Focus</span></a></li>
+                <li><a href="schedule.html" class="nav-link active"><i class="fa-solid fa-calendar-days"></i> <span>Schedule</span></a></li>
+                <li><a href="grades.html" class="nav-link"><i class="fa-solid fa-medal"></i> <span>Grades</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="main-content-area">
+
+            <header class="dashboard-header">
+                <div class="current-date" id="current-date-display">Tuesday, October 21, 2025</div>
+                <button class="profile-button"></button>
+            </header>
+
+            <main class="schedule-page-content">
+                
+                <section class="page-header">
+                    <h1 class="subsection">Class Schedule</h1>
+                    <p>Your week at a glance.</p>
+                </section>
+
+                <div class="schedule-controls">
+                    <button class="btn btn-secondary" id="export-pdf-btn">Export PDF</button>
+                </div>
+
+                <div class="schedule-container">
+                    <div class="schedule-grid">
+                        
+                        <div class="grid-cell header-corner"></div>
+                        <div class="grid-cell day-header">MON</div>
+                        <div class="grid-cell day-header">TUE</div>
+                        <div class="grid-cell day-header">WED</div>
+                        <div class="grid-cell day-header">THU</div>
+                        <div class="grid-cell day-header">FRI</div>
+                        <div class="grid-cell day-header">SAT</div>
+                        <div class="grid-cell day-header">SUN</div>
+
+                        <div class="grid-cell time-labels" id="time-labels-col">
+                            </div>
+
+                        <div class="grid-cell day-column" data-day="MON"></div>
+                        <div class="grid-cell day-column" data-day="TUE"></div>
+                        <div class="grid-cell day-column" data-day="WED"></div>
+                        <div class="grid-cell day-column" data-day="THU"></div>
+                        <div class="grid-cell day-column" data-day="FRI"></div>
+                        <div class="grid-cell day-column" data-day="SAT"></div>
+                        <div class="grid-cell day-column" data-day="SUN"></div>
+
+                    </div>
+                </div>
+
+                <div class="schedule-legend" id="schedule-legend">
+                    </div>
+
+            </main>
+        </div> </div> </body>
+
+        <script src="../js/date.js"></script>
+        <script src="../js/schedule.js" type="module"></script>
+        <script src="../js/profile-header.js" type="module"></script> </html>
+        
+</html>

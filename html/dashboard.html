@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="https://kit.fontawesome.com/0be5f36c73.js" crossorigin="anonymous"></script>
+    <title>Dashboard - StudyKart GO!</title>
+    </head>
+<body>
+
+    <div id="profile-setup-modal" class="modal-overlay" style="display: none;">
+       <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <h2 id="modal-title">Welcome to StudyKart!</h2>
+            <p>Let's get your profile set up.</p>
+            
+            <form class="profile-form" id="profile-form">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter your name" >
+
+                <label for="school">School</label>
+                <input type="text" id="school" placeholder="Enter your school" >
+
+                <label for="birthday">Birthday</label>
+                <input type="date" id="birthday" >
+
+                <label for="year">Year Level</label>
+                <input type="text" id="year" placeholder="e.g. 1st Year" >
+
+                <label for="quote">Your Custom Quote</label>
+                <input type="text" id="quote" placeholder="Enter a motivational quote...">
+
+                <label for="decoration">Profile Tagline</label>
+            <input type="text" id="decoration" placeholder="e.g. Ískolar ní Mama">
+
+            <label for="avatar">Avatar Initial (Max 2 chars)</label>
+            <input type="text" id="avatar" placeholder="K" maxlength="2">
+
+            <label for="id-card-color">ID Card Color</label>
+            <input type="color" id="id-card-color" value="#ffffff">
+
+            <input type="file" id="profile-picture-upload" hidden accept="image/*">
+            <label for="profile-picture-upload" id="profile-drop-zone" class="file-drop-zone">
+                <i class="fa-solid fa-cloud-arrow-up" id="profile-upload-icon"></i>
+                <span id="profile-upload-text">Drag & drop or click to upload</span>
+                <span id="profile-file-name-display" class="file-name-display">No file chosen</span>
+               <button type="button" id="remove-profile-picture-btn" class="btn-remove-file" style="display: none;">&times;</button>
+            </label>
+
+            
+            <button type="submit" class="btn">Get Started</button>
+        </form>
+        </div>
+    </div>
+
+    <div id="edit-profile-modal" class="modal-overlay">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="edit-modal-title">
+        
+        <div class="modal-header">
+            <h2 id="edit-modal-title">Edit Profile</h2>
+            <button class="btn-close-modal" aria-label="Close modal">&times;</button>
+        </div>
+
+        
+        <form id="edit-profile-form" class="modal-form">
+            
+            <div class="form-group">
+                <label for="edit-name">Name</label>
+                <input type="text" id="edit-name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-school">School</label>
+                <input type="text" id="edit-school" placeholder="Enter your school" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-birthday">Birthday</label>
+                <input type="date" id="edit-birthday" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-year">Year Level</label>
+                <input type="text" id="edit-year" placeholder="e.g. 1st Year" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-quote">Your Custom Quote</label>
+                <input type="text" id="edit-quote" placeholder="Enter a motivational quote...">
+            </div>
+            <div class="form-group">
+                <label for="edit-decoration">Profile Tagline</label>
+                <input type="text" id="edit-decoration" placeholder="e.g. Ískolar ní Mama">
+            </div>
+
+        <div class="form-group">
+            <label for="edit-avatar">Avatar Initial (Max 2 chars)</label>
+            <input type="text" id="edit-avatar" placeholder="K" maxlength="2">
+        </div>
+
+        <div class="form-group">
+            <label for="edit-id-card-color">ID Card Color</label>
+            <input type="color" id="edit-id-card-color">
+        </div>
+        
+        <div class="form-group">
+            <input type="file" id="edit-profile-picture-upload" hidden accept="image/*">
+            <label for="edit-profile-picture-upload" id="edit-profile-drop-zone" class="file-drop-zone">
+                <img src="" alt="Profile Preview" class="profile-preview-img" id="edit-profile-preview-img">
+                <i class="fa-solid fa-cloud-arrow-up" id="edit-profile-upload-icon"></i>
+                <span id="edit-profile-upload-text">Drag & drop or click to upload</span>
+                <span id="edit-profile-file-name-display" class="file-name-display">No file chosen</span>
+                <button type="button" id="edit-remove-profile-picture-btn" class="btn-remove-file" style="display: none;">&times;</button>
+            </label>
+        </div>
+        <div class="form-actions">
+            <button type="button" class="btn btn-secondary" data-close="edit-profile-modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+        
+        </form>
+    </div>
+</div>
+    <div class="app-container sidebar-collapsed">
+        <nav class="sidebar-nav">
+            <div class="sidebar-logo">
+                <i><img src="/assets/logo.svg" alt="" class="sidebar-logo-img"></i>
+            </div>
+            <ul class="nav-list">
+                <li><a href="dashboard.html" class="nav-link active"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a></li>
+                <li><a href="courses.html" class="nav-link"><i class="fa-solid fa-folder"></i><span> Courses</span></a></li>
+                <li><a href="tasks.html" class="nav-link"><i class="fa-solid fa-clipboard-check"></i> <span>Tasks</span></a></li>
+                <li><a href="pomodoro.html" class="nav-link"><i class="fa-solid fa-alarm-clock"></i> <span>Focus</span></a></li>
+                <li><a href="schedule.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i> <span>Schedule</span></a></li>
+                <li><a href="grades.html" class="nav-link"><i class="fa-solid fa-medal"></i> <span>Grades</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="main-dashboard">
+            
+            <header class="dashboard-header">
+                <div class="current-date" id="current-date-display">Tuesday, October 21, 2025</div>
+                <button class="profile-button"></button>
+            </header>
+
+            <main class="dashboard-grid">
+
+                <div class="main-content">
+                    
+                    <section class="greeting">
+                        <h1 class="">Hello, <span id="greeting-name">Kei</span>!</h1>
+                        <p id="greeting-quote">"It's a beautiful day to save lives"</p>
+                    </section>
+
+                    <section class="card profile-card" id="clickable-profile-card">
+                        <div class="profile-icon"></div>
+                            <div class="profile-details">
+                                <div>
+                                    <span class="label">Name</span>
+                                    <span class="value" id="card-name">Kei</span>
+                                </div>
+                                <div>
+                                    <span class="label">School</span>
+                                    <span class="value" id="card-school">CSU</span>
+                                </div>
+                            </div>
+                            <div class="profile-details"> <div>
+                                    <span class="label">Birthday</span>
+                                    <span class="value" id="card-birthday">10-1-2025</span>
+                                </div>
+                                <div>
+                                    <span class="label">Year Level</span>
+                                    <span class="value" id="card-year">3rd Year</span>
+                                </div>
+                            </div>
+                        
+            
+                        <div class="profile-decoration" id="card-decoration">
+                            Iskolar ni Mama
+                        </div>
+                    </section>
+                    
+                    <div class="to-do-focus">
+                        <section class="card todo-widget">
+                            <div class="widget-header">
+                                <h2 class="subsection">To-do</h2>
+                                <div class="widget-header-actions">
+                                    <button class="btn btn-primary" id="todo-widget-add-btn"> + </button>
+                                    <a href="tasks.html" class="btn-link">See all</a>
+                                </div>
+                            </div>
+                            <ul class="todo-list">
+                                <li class="todo-item">
+                                    <div class="item-details">
+                                        <label for="todo-1">
+                                            <span class="item-tag" style="--tag-color: #d9534f;">DLD</span>
+                                            <span class="item-title">DLD Prototype</span>
+                                            <span class="item-date">November 4, 2025</span>
+                                        </label>
+                                    </div>
+                                    <input type="checkbox" class="todo-checkbox" id="todo-1">
+                                </li>
+                                <li class="todo-item">
+                                    <div class="item-details">
+                                        <label for="todo-2">
+                                            <span class="item-tag" style="--tag-color: #e83e8c;">WebDev</span>
+                                            <span class="item-title">Website</span>
+                                            <span class="item-date">November 4, 2025</span>
+                                        </label>
+                                    </div>
+                                    <input type="checkbox" class="todo-checkbox" id="todo-2">
+                                </li>
+                                <li class="todo-item">
+                                    <div class="item-details">
+                                        <label for="todo-3">
+                                            <span class="item-tag" style="--tag-color: #e83e8c;">DS2</span>
+                                            <span class="item-title">PIXecured</span>
+                                            <span class="item-date">November 7, 2025</span>
+                                        </label>
+                                    </div>
+                                    <input type="checkbox" class="todo-checkbox" id="todo-3">
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section class="card focus-widget-mini">
+                            <h2 class="subsection">Focus</h2>
+                            <div class="mini-timer-display">
+                                <i><img src="../assets/Pictogrammers-Material-Timer.svg" alt="timer"></i>
+                                <span class="time-text">25:00</span>
+                            </div>
+                            <button class="btn btn-primary">Start</button>
+                        </section>
+                    </div>
+
+                </div> 
+
+                <aside class="right-sidebar">
+                    
+                    <section class="card snapshot-widget">
+                        <h2 class="subsection">Today's snapshot</h2>
+                        <div class="snapshot-stats">
+                            <div class="stat-item">
+                                <strong>3/5</strong>
+                                <span>Task Done</span>
+                            </div>
+                            <div class="stat-item">
+                                <strong>1h 20m</strong>
+                                <span>Focus Time</span>
+                            </div>
+                            <div class="stat-item">
+                                <strong>75%</strong>
+                                <span>Current GWA</span>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    
+                    
+
+                    <section class="card next-class-widget">
+                        <h2 class="subsection">Next Class</h2>
+                        <span class="class-time">2:30 PM</span>
+                        <span class="class-name">CALCULUS</span>
+                        <span class="class-location">Room 205</span>
+                    </section>
+
+                    <section class="heatmap-container card">
+                        <h2 id="heatmap-title">Study Activity (October 2025)</h2>
+                        
+                        <div class="heatmap-legend">
+                            <span>Sun</span>
+                            <span>Mon</span>
+                            <span>Tue</span>
+                            <span>Wed</span>
+                            <span>Thu</span>
+                            <span>Fri</span>
+                            <span>Sat</span>
+                        </div>
+                        
+                        <div class="heatmap-grid" id="habit-grid">
+                            </div>
+                    </section>
+                    
+                </aside> 
+            </main> 
+        </div> 
+    </div> 
+
+    </body>
+
+    <script src="../js/date.js"></script>
+    <script src="../js/dashboard.js" type="module"></script>
+    <script src="../js/profile-header.js" type="module"></script> </html>
+</html>

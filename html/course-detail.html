@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/tasks.css"> 
+    <link rel="stylesheet" href="../css/course-detail.css"> 
+    <link rel="stylesheet" href="../css/courses.css">
+    <title>Course Details - StudyKart GO!</title>
+    <script src="https://kit.fontawesome.com/0be5f36c73.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div id="course-modal" class="modal-overlay">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-header">
+                <h2 id="modal-title">New Course</h2>
+                <button class="btn-close-modal" aria-label="Close modal">&times;</button>
+            </div>
+            <form id="course-form" class="modal-form" novalidate>
+                <input type="hidden" id="course-id">
+                <div class="form-group">
+                    <label for="course-color">Color</label>
+                    <input type="color" id="course-color" name="color" value="#a5f3fc">
+                </div>
+                <div class="form-group">
+                    <label for="course-name">Course Name</label>
+                    <input type="text" id="course-name" placeholder="e.g., Web Development" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-course-instructor">Instructor (Optional)</label>
+                    <input type="text" id="modal-course-instructor" placeholder="e.g., Prof. Larra Mae Balisi">
+                </div>
+                <h3 class="form-step-title">Schedule</h3>
+                <div id="schedule-builder-container"></div>
+                <button type="button" class="btn btn-secondary btn-add-field" id="add-schedule-btn">+ Add Schedule</button>
+                <h3 class="form-step-title">Grading Weights</h3>
+                <div id="grading-weights-container"></div>
+                <button type="button" class="btn btn-secondary btn-add-field" id="add-component-btn">+ Add Component</button>
+                <div class="weight-total-display" id="weight-total-display">Total: <span>0</span>%</div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-course-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="form-submit-btn">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-task-modal" class="modal-overlay">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="task-modal-title">
+            <div class="modal-header">
+                <h2 id="task-modal-title">Create New Task</h2>
+                <button class="btn-close-modal" aria-label="Close modal">&times;</button>
+            </div>
+           <form id="new-task-form" class="modal-form">
+                <input type="hidden" id="task-id">
+                <input type="hidden" id="task-course" value="">
+                <div class="form-group">
+                    <label for="task-name">Task Name</label>
+                    <input type="text" id="task-name" placeholder="e.g., Finish lab report" required>
+                </div>
+                <div class="form-group">
+                    <label for="task-due-date">Due Date</label>
+                    <input type="date" id="task-due-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="task-priority">Priority</label>
+                    <select id="task-priority" required>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high" selected>High</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-link-modal" class="modal-overlay">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="add-link-modal-title">
+            <div class="modal-header">
+                <h2 id="add-link-modal-title">Add New Link</h2>
+                <button class="btn-close-modal" aria-label="Close modal">&times;</button>
+            </div>
+           <form id="add-link-form" class="modal-form">
+                <div class="form-group">
+                    <label for="add-link-title">Title</label>
+                    <input type="text" id="add-link-title" placeholder="e.g., Google Drive Folder" required>
+                </div>
+                <div class="form-group">
+                    <label for="add-link-url">URL</label>
+                    <input type="url" id="add-link-url" placeholder="https://..." required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Link</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="edit-link-modal" class="modal-overlay">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="edit-link-modal-title">
+            <div class="modal-header">
+                <h2 id="edit-link-modal-title">Edit Link</h2>
+                <button class="btn-close-modal" aria-label="Close modal">&times;</button>
+            </div>
+           <form id="edit-link-form" class="modal-form">
+                <input type="hidden" id="edit-link-id">
+                <div class="form-group">
+                    <label for="edit-link-title">Title</label>
+                    <input type="text" id="edit-link-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-link-url">URL</label>
+                    <input type="url" id="edit-link-url" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-file-modal" class="modal-overlay">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="add-file-modal-title">
+            <div class="modal-header">
+                <h2 id="add-file-modal-title">Add New File</h2>
+                <button class="btn-close-modal" aria-label="Close modal">&times;</button>
+            </div>
+           <form id="add-file-form" class="modal-form">
+                <div class="form-group">
+                    <label for="add-file-name">File Name (Optional)</label>
+                    <input type="text" id="add-file-name" placeholder="e.g., Syllabus.pdf">
+                </div>
+                <div class="form-group">
+                    <label for="add-file-input">Select File</label>
+                    <input type="file" id="add-file-input" required hidden>
+                    <label for="add-file-input" class="file-drop-zone">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Click to upload or drag & drop</span>
+                        <span class="file-name-display" id="file-name-display">No file chosen</span>
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save File</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="edit-file-modal" class="modal-overlay">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="edit-file-modal-title">
+            <div class="modal-header">
+                <h2 id="edit-file-modal-title">Edit File Name</h2>
+                <button class="btn-close-modal" aria-label="Close modal">&times;</button>
+            </div>
+           <form id="edit-file-form" class="modal-form">
+                <input type="hidden" id="edit-file-id">
+                <div class="form-group">
+                    <label for="edit-file-name">File Name</label>
+                    <input type="text" id="edit-file-name" required>
+                </div>
+                <p style="font-size: 0.9rem; color: #6c757d;">Note: This only edits the name. To change the file, please delete this one and add a new one.</p>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-set-modal" class="modal-overlay">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="set-modal-title">
+            <div class="modal-header">
+                <h2 id="set-modal-title">Create Study Set</h2>
+                <button class="btn-close-modal" aria-label="Close modal">&times;</button>
+            </div>
+           <form id="new-set-form" class="modal-form">
+                <input type="hidden" id="set-id">
+                <div class="form-group">
+                    <label for="set-title">Title</label>
+                    <input type="text" id="set-title" placeholder="e.g., Midterm Review" required>
+                </div>
+                
+                <h3 class="form-step-title">Terms</h3>
+                <div id="set-terms-container">
+                    </div>
+                <button type="button" class="btn btn-secondary" id="add-term-card-btn">+ Add Card</button>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Set</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="review-modal" class="modal-overlay review-modal-overlay">
+        <div class="review-header">
+            <h2 id="review-set-title">Review Set</h2>
+            <button class="btn-close-modal" id="close-review-btn" aria-label="Close review">&times;</button>
+        </div>
+        <div class="review-content">
+            <div class="flashcard-container" id="flashcard-container">
+                <div class="flashcard">
+                    <div class="card-face card-front" id="card-front">
+                        Term
+                    </div>
+                    <div class="card-face card-back" id="card-back">
+                        Definition
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="review-controls">
+            <button class="btn btn-secondary" id="review-shuffle-btn"><i class="fa-solid fa-shuffle"></i> Shuffle</button>
+            <div class="review-nav">
+                <button class="btn btn-secondary" id="review-prev-btn"><i class="fa-solid fa-arrow-left"></i></button>
+                <span id="review-counter">1 / 10</span>
+                <button class="btn btn-secondary" id="review-next-btn"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <button class="btn btn-secondary" id="review-close-btn-bottom">Done</button>
+        </div>
+    </div>
+    <div class="app-container sidebar-collapsed">
+        
+        <nav class="sidebar-nav">
+            <div class="sidebar-logo">
+                <i><img src="/assets/logo.svg" alt="" class="sidebar-logo-img"></i>
+            </div>
+            <ul class="nav-list">
+                 <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a></li>
+                <li><a href="courses.html" class="nav-link active"><i class="fa-solid fa-folder"></i><span> Courses</span></a></li>
+                <li><a href="tasks.html" class="nav-link"><i class="fa-solid fa-clipboard-check"></i> <span>Tasks</span></a></li>
+                <li><a href="pomodoro.html" class="nav-link"><i class="fa-solid fa-alarm-clock"></i> <span>Focus</span></a></li>
+                <li><a href="schedule.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i> <span>Schedule</span></a></li>
+                <li><a href="grades.html" class="nav-link"><i class="fa-solid fa-medal"></i> <span>Grades</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="main-content-area">
+            <main class="course-detail-page">
+                
+                <header class="course-detail-header">
+                    <a href="courses.html" class="back-link" aria-label="Back to courses">&lsaquo;</a>
+                    <div class="course-header-content">
+                        <div class="course-icon-placeholder" id="course-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M10 4H4c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
+                            </svg>
+                        </div>
+                        <h1 id="course-name-title">Loading...</h1>
+                    </div>
+                    <button class="btn btn-secondary" id="edit-course-btn">Edit Course</button>
+                </header>
+
+                <section class="course-info-card">
+                    <div class="info-item">
+                        <span>Instructor</span>
+                        <strong id="course-instructor">...</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Schedule</span>
+                        <strong id="course-schedule">...</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Location</span>
+                        <strong id="course-location">...</strong>
+                    </div>
+                </section>
+
+                <nav class="course-tabs">
+                    <button class="tab-link active" data-tab="todo">To-do</button>
+                    <button class="tab-link" data-tab="files">Files</button>
+                    <button class="tab-link" data-tab="studysets">Study Sets</button>
+                    <button class="tab-link" data-tab="links">Links</button>
+                </nav>
+
+                <div class="course-tab-content">
+                    
+                    <div class="tab-pane active" id="tab-todo">
+                        <div class="todo-header">
+                            <select id="task-filter-status">
+                                <option value="ongoing">Ongoing</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                            <button class="btn btn-primary" id="add-task-for-course">+ To-do</button>
+                        </div>
+                        <div class="task-list-container" id="task-list-container">
+                            </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="tab-files">
+                        <div class="tab-pane-header">
+                            <button class="btn btn-primary" id="add-file-btn">+ Add File</button>
+                        </div>
+                        <div class="files-list-container" id="files-list-container">
+                            </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab-studysets">
+                        <div class="tab-pane-header">
+                            <button class="btn btn-primary" id="add-set-btn">+ Add Study Set</button>
+                        </div>
+                        <div class="sets-list-container" id="sets-list-container">
+                            </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab-links">
+                        <div class="tab-pane-header">
+                            <button class="btn btn-primary" id="add-link-btn">+ Add Link</button>
+                        </div>
+                        <div class="links-list-container" id="links-list-container">
+                            </div>
+                    </div>
+
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="../js/data.js" type="module"></script>
+    <script src="../js/date.js"></script>
+    <script src="../js/course-detail.js" type="module"></script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,241 @@
+.tasks-page-content {
+    overflow-y: auto; 
+    padding-right: 8px; 
+}
+
+.tasks-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    margin-top: 12px;
+}
+
+.task-filters {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.task-filters label {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.task-filters select {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.tasks-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.task-column h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #6c757d;
+    margin-bottom: 16px;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 200px;
+}
+
+.task-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    position: relative;
+
+    display: grid;
+    grid-template-columns: auto 1fr; /* Two columns: checkbox and content */
+    grid-template-rows: auto auto auto auto; /* Four rows */
+    row-gap: 8px;
+    column-gap: 12px;
+    align-items: start;
+}
+
+.task-complete-checkbox {
+    grid-column: 1;
+    grid-row: 1;
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+    accent-color: #1f1f1f;
+    cursor: pointer;
+}
+
+.task-card h3 {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f1f1f;
+    padding-right: 60px; /* Space for edit/delete buttons */
+    word-break: break-word;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.task-card-buttons {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.task-subject {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #495057;
+}
+
+.task-due-date {
+    grid-column: 2;
+    grid-row: 3;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.task-priority {
+    grid-column: 2;
+    grid-row: 4;
+    
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    width: fit-content; /* Prevents badge from stretching */
+    display: inline-block;
+}
+
+.task-priority.high {
+    background-color: #fdeeee;
+    color: #dc3545;
+}
+
+.task-priority.medium {
+    background-color: #fff4e6;
+    color: #ff8c00;
+}
+
+.task-priority.low {
+    background-color: #e6f7ff;
+    color: #1890ff;
+}
+
+.task-column.drag-over {
+    background-color: #eaf2ff; 
+    border-color: #9ec5fe; 
+}
+
+.task-card:dragging {
+    opacity: 0.5;
+    transform: rotate(3deg);
+}
+
+.task-card.dragging-hide {
+    display: none;
+}
+
+.btn-delete-task,
+.btn-edit-task {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    padding: 4px 6px;
+    cursor: pointer;
+    opacity: 0.5; 
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.btn-delete-task {
+    color: #ff4d4d; 
+    font-size: 1.3rem; 
+}
+
+.btn-edit-task {
+    color: #888;
+}
+
+.task-card:hover .btn-delete-task,
+.task-card:hover .btn-edit-task {
+    opacity: 1;
+}
+
+.btn-delete-task:hover {
+    color: #cc0000; 
+}
+
+.btn-edit-task:hover {
+    color: #111; 
+}
+
+.no-tasks-message {
+    text-align: center;
+    color: #aaa;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+.task-card.missed-deadline {
+    background-color: #fff5f5;
+    opacity: 0.8;
+}
+
+.task-card.missed-deadline h3,
+.task-card.missed-deadline .task-subject {
+    color: #8b0000;
+    text-decoration: line-through;
+}
+
+.missed-text {
+    color: #dc3545;
+    font-weight: 700;
+}
+
+.task-card.completed {
+    background-color: #f8f9fa; 
+    opacity: 0.8;
+}
+
+.task-card.completed h3,
+.task-card.completed .task-subject {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+@media (max-width: 767px) {
+    .tasks-board {
+        grid-template-columns: 1fr; 
+    }
+
+    .task-priority {
+        grid-column: 2 / 3;
+        grid-row: 4 / 5;
+        justify-self: start;
+        margin-top: 4px;
+    }
+
+    .task-card h3 {
+         word-break: normal; 
+    }
+}
