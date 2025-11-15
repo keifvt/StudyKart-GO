@@ -71,9 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeReviewBtn = document.getElementById("close-review-btn");
     const closeReviewBtnBottom = document.getElementById("review-close-btn-bottom");
     const flashcardContainer = document.getElementById("flashcard-container");
-    // --- THIS IS THE FIX ---
-    const flashcard = document.querySelector(".flashcard"); // Get the card itself
-    // --- END OF FIX ---
+    const flashcard = document.querySelector(".flashcard"); 
+    
     const cardFront = document.getElementById("card-front");
     const cardBack = document.getElementById("card-back");
     const reviewShuffleBtn = document.getElementById("review-shuffle-btn");
@@ -952,4 +951,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     init();
+
 });
