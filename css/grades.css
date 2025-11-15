@@ -154,4 +154,13 @@
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-primary, #111); 
+
+}
+
+@media (max-width: 767px) {
+    .grade-table th,
+    .grade-table td {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
 }
