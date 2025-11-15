@@ -110,4 +110,11 @@
 .log-total .total-time {
     color: var(--brand-secondary, #1f1f1f);
     font-weight: 700;
+
+}
+
+@media (max-width: 767px) {
+    .timer-display {
+        font-size: 6rem; 
+    }
 }
