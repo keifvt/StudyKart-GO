@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 240px 1fr;
     min-height: 100vh;
+    
 }
 
 .sidebar-nav {
@@ -98,6 +99,7 @@
     padding: 16px 32px;
     max-height: 100vh; 
     gap: 16px;
+    overflow-Y: SCROLL;
 }
 
 .main-header {
@@ -365,4 +367,5 @@
         padding-bottom: 70px;
     }
 }
+
 
